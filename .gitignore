@@ -1,0 +1,9 @@
+.env
+generated_values_clean.yaml
+*.log
+node_modules/
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+__pycache__/
+.vscode/
