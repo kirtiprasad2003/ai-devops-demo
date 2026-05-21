@@ -1,6 +1,7 @@
 .env
 generated_values_clean.yaml
 *.log
+*.ps1
 node_modules/
 .terraform/
 terraform.tfstate
@@ -8,3 +9,6 @@ terraform.tfstate.backup
 __pycache__/
 .vscode/
 .kube/
+secrets.yaml
+slack.yaml
+robusta-values.yaml
