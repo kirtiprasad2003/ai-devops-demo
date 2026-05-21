@@ -38,7 +38,38 @@ pipeline {
         success {
             sh """
             curl -X POST -H 'Content-type: application/json' \
-            --data '{"text":"✅ Jenkins Deployment Successful 🚀"}' \
+            --data '{
+                "text":"🚀 *AI-DevOps Deployment Successful*",
+                "attachments":[
+                    {
+                        "color":"#36a64f",
+                        "fields":[
+                            {
+                                "title":"Project",
+                                "value":"AI DevOps Platform",
+                                "short":true
+                            },
+                            {
+                                "title":"Environment",
+                                "value":"Kubernetes Local Cluster",
+                                "short":true
+                            },
+                            {
+                                "title":"Status",
+                                "value":"✅ Deployment Completed Successfully",
+                                "short":false
+                            },
+                            {
+                                "title":"Triggered By",
+                                "value":"Jenkins CI/CD Pipeline",
+                                "short":false
+                            }
+                        ],
+                        "footer":"Enlight DevOps Automation",
+                        "footer_icon":"https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+                    }
+                ]
+            }' \
             $SLACK_WEBHOOK
             """
         }
@@ -46,7 +77,38 @@ pipeline {
         failure {
             sh """
             curl -X POST -H 'Content-type: application/json' \
-            --data '{"text":"❌ Jenkins Deployment Failed"}' \
+            --data '{
+                "text":"🚨 *AI-DevOps Deployment Failed*",
+                "attachments":[
+                    {
+                        "color":"#ff0000",
+                        "fields":[
+                            {
+                                "title":"Project",
+                                "value":"AI DevOps Platform",
+                                "short":true
+                            },
+                            {
+                                "title":"Environment",
+                                "value":"Kubernetes Local Cluster",
+                                "short":true
+                            },
+                            {
+                                "title":"Status",
+                                "value":"❌ Deployment Failed",
+                                "short":false
+                            },
+                            {
+                                "title":"Action Required",
+                                "value":"Check Jenkins Console Logs Immediately",
+                                "short":false
+                            }
+                        ],
+                        "footer":"Enlight DevOps Automation",
+                        "footer_icon":"https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+                    }
+                ]
+            }' \
             $SLACK_WEBHOOK
             """
         }
