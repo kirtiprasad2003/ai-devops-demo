@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        SLACK_WEBHOOK = credentials('slack-webhook')
+    }
+
     stages {
 
         stage('Check Cluster') {
@@ -25,6 +29,26 @@ pipeline {
             steps {
                 sh 'kubectl get pods'
             }
+        }
+
+    }
+
+    post {
+
+        success {
+            sh """
+            curl -X POST -H 'Content-type: application/json' \
+            --data '{"text":"✅ Jenkins Deployment Successful 🚀"}' \
+            $SLACK_WEBHOOK
+            """
+        }
+
+        failure {
+            sh """
+            curl -X POST -H 'Content-type: application/json' \
+            --data '{"text":"❌ Jenkins Deployment Failed"}' \
+            $SLACK_WEBHOOK
+            """
         }
 
     }
