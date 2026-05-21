@@ -1,0 +1,26 @@
+controller:
+  admin:
+    username: admin
+    password: admin123
+
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "512Mi"
+
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+
+  installPlugins:
+    - kubernetes
+    - workflow-aggregator
+    - git
+    - docker-workflow
+
+  serviceType: NodePort
+
+  nodePort: 32000
+
+persistence:
+  enabled: false
